@@ -26,7 +26,7 @@ class JSONLoader {
                 return .failure(.jsonSerializationFailed)
             }
             
-            guard let jsonDictionary = jsonResult as? Dictionary<String, AnyObject> else {
+            guard let jsonDictionary = jsonResult as? [String: Any] else {
                 return .failure(.castingJsonToDictionaryFailed)
             }
             
