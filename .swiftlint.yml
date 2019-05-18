@@ -1,0 +1,147 @@
+line_length:
+
+included:
+
+excluded:
+  - 'R.generated.swift'
+  - '*/**/R.generated.swift'
+  - Pods
+
+opt_in_rules:
+  - empty_count
+  - empty_string
+  - contains_over_first_not_nil
+  - sorted_first_last
+  - first_where
+  - vertical_parameter_alignment
+  - vertical_parameter_alignment_on_call
+  - private_action
+  - private_outlet
+  - unused_optional_binding
+  - unused_import
+  - unneeded_parentheses_in_closure_argument
+  - trailing_comma
+  - switch_case_on_newline
+  - sorted_imports
+  - required_enum_case
+  - redundant_string_enum_value
+  - prefixed_toplevel_constant
+  - overridden_super_call
+  - multiline_parameters
+  - lower_acl_than_parent
+  - let_var_whitespace
+  - force_unwrapping
+  - anyobject_protocol
+  - attributes
+
+file_header:
+  required_pattern: |
+                    \/\/
+                    \/\/  .*?\.swift
+                    \/\/  HUB.*?
+                    \/\/
+                    \/\/  Created by .*? on \d{1,2}\/\d{1,2}\/\d{2}\.
+                    \/\/  Copyright © \d{4} Karim Ebrahem\. All rights reserved\.
+                    \/\/
+identifier_name:
+  excluded:
+    - id
+  severity: warning
+
+disabled_rules:
+  - line_length
+  - trailing_whitespace
+  - force_cast
+line_length: 120
+number_separator:
+  minimum_length: 5
+force_try: warning
+nesting:
+  type_level: 3
+  
+custom_rules:
+  whitespace_before_comment: # From https://github.com/brandenr/swiftlintconfig
+    name: "Whitespace before comment"
+    regex: '(^ *//\w+)'
+    message: "Comments should start with a whitespace."
+    severity: warning
+  comments_capitalized:
+    name: "Capital first letter in comments"
+    regex: '(^ +// +(?!swiftlint)[a-z]+)'
+    message: "The first word of a comment should be capitalized."
+    severity: warning
+  empty_line_after_super: # From https://github.com/brandenr/swiftlintconfig
+    name: "Empty line after super"
+    regex: '(^ *super\.[ a-zA-Z0-9=?.\(\)\{\}:,><!]*\n *(?!(?:\}|return))\S+)'
+    message: "There should be an empty line after calling super."
+    severity: warning
+  force_https: # From https://github.com/Twigz/Game
+    name: "Force HTTPS over HTTP"
+    regex: '((?i)http(?!s))'
+    match_kinds: string
+    message: "Use of HTTP is not allowed; make sure to use HTTPS."
+    severity: error
+  double_space: # From https://github.com/IBM-Swift/Package-Builder
+    include: "*.swift"
+    name: "Double space"
+    regex: '([a-z,A-Z] \s+)'
+    message: "Double space between keywords."
+    match_kinds: keyword
+    severity: warning
+  uiwebview_deprecated:
+    included: ".*.swift"
+    name: "UIWebView deprecated"
+    regex: 'UIWebView'
+    message: "Do not use `UIWebView` as it is depcreated; use `WKWebView` instead."
+    severity: error
+  delegate:
+    name: "Delegates"
+    regex: '(?<!weak\s)var\s\w*(D|d)elegate\w*:'
+    message: "Delegates should be defined as `weak`. "
+    severity: error
+  logger_not_used:
+    name: "Logger not used"
+    regex: '(print|NSLog)\('
+    message: "`print` should not be used; use `Logger` instead."
+    severity: warning
+  empty_line_after_guard:
+    name: "Empty line after Guard"
+    regex: '(^ *guard[ a-zA-Z0-9=?.\(\),><!]*\{[ a-zA-Z0-9=?.\(\),><!]*\}\n *(?!(?:return|guard))\S+)'
+    message: "There should be an empty line after a guard."
+    severity: warning
+  mark_newline:
+    name: "Empty line before MARK"
+    regex: '(?:[^\r\n\t\f \{](?:\n|\r)[^\S\n\r]*\/\/ MARK: -?|\/\/ MARK: -?[^\n\r]*(?:\n|\r)[^\S\n\r]*\w)'
+    message: "MARKs should be preceeded with an empty line."
+    severity: warning
+    match_kinds:
+      - comment
+      - comment.mark
+      - comment.url
+  empty_condition_statement: # From https://github.com/mylifeasdog/Pictures
+    name: "Empty condition"
+    message: "Condition statements should not be left empty."
+    regex: '[^\w\.#](?:if |else if |else)[^,{]*\{\s*\}'
+    severity: error
+  empty_method:
+    name: "Empty function"
+    message: "Functions cannot be empty"
+    regex: '[^\w\.#](?:func)[^,{]*\{\s*\}'
+    severity: warning
+  ignore_memory_warning:
+    name: "Unused `didReceiveMemoryWarning` function"
+    message: "Remove (probably) unused `didReceiveMemoryWarning` function."
+    regex: 'didReceiveMemoryWarning'
+    severity: warning
+  if_as_guard: # From https://github.com/Carthage/Carthage
+    included: ".*.swift"
+    regex: '\n *if [^\{]+\{\s*return[^\n]*\n *\}(?! *else)'
+    name: "If as Guard"
+    message: "Don't use an if statement to just return – use guard for such cases instead."
+    severity: warning
+  newline_after_imports:
+    regex: '(((import|@testable import) \w+( )*\s(?!(import|@testable import))(?!\s)))'
+    name: "Newline after imports"
+    message: "add a new line after the last import statement."
+    severity: warning
+    
