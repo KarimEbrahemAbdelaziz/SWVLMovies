@@ -16,6 +16,7 @@
 		BC6294D12290C506004F0D81 /* SWVLMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6294D02290C506004F0D81 /* SWVLMoviesTests.swift */; };
 		BC6294DC2290C506004F0D81 /* SWVLMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6294DB2290C506004F0D81 /* SWVLMoviesUITests.swift */; };
 		BC6294EC2290CBC6004F0D81 /* movies.json in Resources */ = {isa = PBXBuildFile; fileRef = BC6294EB2290CBC6004F0D81 /* movies.json */; };
+		BC6294F22290CC8C004F0D81 /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6294F12290CC8C004F0D81 /* JSONLoader.swift */; };
 		D158741F207074546835A8DD /* Pods_SWVLMovies.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A081163D8FE97621619C0101 /* Pods_SWVLMovies.framework */; };
 		DEC23D56451E832ED11EF9E1 /* Pods_SWVLMoviesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3E2F1DD112E4EF4A16DF9A0 /* Pods_SWVLMoviesUITests.framework */; };
 /* End PBXBuildFile section */
@@ -58,6 +59,7 @@
 		BC6294DB2290C506004F0D81 /* SWVLMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWVLMoviesUITests.swift; sourceTree = "<group>"; };
 		BC6294DD2290C506004F0D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6294EB2290CBC6004F0D81 /* movies.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = movies.json; sourceTree = "<group>"; };
+		BC6294F12290CC8C004F0D81 /* JSONLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONLoader.swift; sourceTree = "<group>"; };
 		C3E2F1DD112E4EF4A16DF9A0 /* Pods_SWVLMoviesUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SWVLMoviesUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD2E3EF1D34FD0DBD0975D38 /* Pods-SWVLMovies.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWVLMovies.debug.xcconfig"; path = "Target Support Files/Pods-SWVLMovies/Pods-SWVLMovies.debug.xcconfig"; sourceTree = "<group>"; };
 		F8DF0E7DD1493D0662F8B148 /* Pods-SWVLMoviesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SWVLMoviesUITests.debug.xcconfig"; path = "Target Support Files/Pods-SWVLMoviesUITests/Pods-SWVLMoviesUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -139,13 +141,13 @@
 		BC6294BA2290C505004F0D81 /* SWVLMovies */ = {
 			isa = PBXGroup;
 			children = (
+				BC6294F42290CF3B004F0D81 /* Resources */,
+				BC6294F32290CF34004F0D81 /* Application */,
+				BC6294EF2290CC65004F0D81 /* Utilities */,
 				BC6294EA2290CBAA004F0D81 /* JSON Files */,
-				BC6294BB2290C505004F0D81 /* AppDelegate.swift */,
 				BC6294BD2290C505004F0D81 /* ViewController.swift */,
 				BC6294BF2290C505004F0D81 /* Main.storyboard */,
-				BC6294C22290C505004F0D81 /* Assets.xcassets */,
 				BC6294C42290C505004F0D81 /* LaunchScreen.storyboard */,
-				BC6294C72290C505004F0D81 /* Info.plist */,
 			);
 			path = SWVLMovies;
 			sourceTree = "<group>";
@@ -174,6 +176,39 @@
 				BC6294EB2290CBC6004F0D81 /* movies.json */,
 			);
 			path = "JSON Files";
+			sourceTree = "<group>";
+		};
+		BC6294EF2290CC65004F0D81 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BC6294F02290CC7C004F0D81 /* Helpers */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		BC6294F02290CC7C004F0D81 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BC6294F12290CC8C004F0D81 /* JSONLoader.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		BC6294F32290CF34004F0D81 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				BC6294BB2290C505004F0D81 /* AppDelegate.swift */,
+			);
+			path = Application;
+			sourceTree = "<group>";
+		};
+		BC6294F42290CF3B004F0D81 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				BC6294C22290C505004F0D81 /* Assets.xcassets */,
+				BC6294C72290C505004F0D81 /* Info.plist */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -430,6 +465,7 @@
 			files = (
 				BC6294BE2290C505004F0D81 /* ViewController.swift in Sources */,
 				BC6294BC2290C505004F0D81 /* AppDelegate.swift in Sources */,
+				BC6294F22290CC8C004F0D81 /* JSONLoader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,7 +642,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SWVLMovies/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SWVLMovies/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -614,7 +651,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.karimebrahem.SWVLMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -624,7 +661,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = SWVLMovies/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/SWVLMovies/Resources/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -632,7 +670,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.karimebrahem.SWVLMovies;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
