@@ -15,7 +15,7 @@ struct MovieCellViewModel {
     let rate: String
     
     init(title: String, year: Int, rate: Int) {
-        self.title = "Title: \(title)"
+        self.title = title
         self.year = "Year: \(year)"
         self.rate = "Rate: \(rate)"
     }

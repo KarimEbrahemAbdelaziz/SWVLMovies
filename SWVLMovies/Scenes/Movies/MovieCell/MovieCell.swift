@@ -10,6 +10,7 @@ import UIKit
 
 class MovieCell: UITableViewCell {
     
+    @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var yearLabel: UILabel!
     @IBOutlet private weak var rateLabel: UILabel!
@@ -17,6 +18,8 @@ class MovieCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        containerView.clipsToBounds = false
+        containerView.layer.cornerRadius = 16
     }
     
 }
