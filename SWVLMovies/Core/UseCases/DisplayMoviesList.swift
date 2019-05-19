@@ -24,7 +24,7 @@ class DisplayMoviesUseCaseImplementation: DisplayMoviesUseCase {
     // MARK: - DisplayMoviesUseCase
     
     func displayMovies(completionHandler: @escaping (Result<[Movie], Error>) -> Void) {
-        self.moviesGateway.fetchMovies { (result) in
+        self.moviesGateway.fetchMovies { result in
             // Do any additional processing & after that call the completion handler
             completionHandler(result)
         }
