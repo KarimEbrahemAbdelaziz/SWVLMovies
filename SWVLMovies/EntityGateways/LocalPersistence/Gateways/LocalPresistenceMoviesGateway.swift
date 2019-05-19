@@ -14,15 +14,22 @@ protocol LocalPersistenceMoviesGateway: MoviesGateway { }
 class LocalFileMoviesGateway: LocalPersistenceMoviesGateway {
     
     // MARK: - Properties
+    private var resourceName: String
     
     enum LocalFileMoviesError: Error {
         case parseFailed
     }
     
+    // MARK: - Init
+    
+    init(resourceName: String) {
+        self.resourceName = resourceName
+    }
+    
     // MARK: - MoviesGateway
     
     func fetchMovies(completionHandler: @escaping FetchMoviesEntityGatewayCompletionHandler) {
-        let result = JSONLoader.loadJSON(from: "movies")
+        let result = JSONLoader.loadJSON(from: resourceName)
         switch result {
         case let .success(jsonMovies):
             guard let localMovies = convertJsonToLocalMovies(json: jsonMovies) else {
