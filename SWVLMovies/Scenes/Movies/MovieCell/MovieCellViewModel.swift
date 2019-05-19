@@ -11,7 +11,13 @@ import Foundation
 struct MovieCellViewModel {
     
     let title: String
-    let year: Int
-    let rate: Int
+    let year: String
+    let rate: String
+    
+    init(title: String, year: Int, rate: Int) {
+        self.title = "Title: \(title)"
+        self.year = "Year: \(year)"
+        self.rate = "Rate: \(rate)"
+    }
     
 }
