@@ -24,6 +24,7 @@ protocol MoviesPresenter {
     func viewDidLoad()
     func configure(cell: MovieCellView, forRow row: Int)
     func didSelect(row: Int)
+    func searchAbout(movieTitle: String)
 }
 
 class MoviesPresenterImplementation: MoviesPresenter {
@@ -32,10 +33,11 @@ class MoviesPresenterImplementation: MoviesPresenter {
     internal let router: MoviesViewRouter
     
     // Normally this would be file private as well, we keep it internal so we can inject values for testing purposes
-    var movies = [Movie]()
+    private var movies = [Movie]()
+    var searchResultMovies = [Movie]()
     
     var numberOfMovies: Int {
-        return movies.count
+        return searchResultMovies.count
     }
     
     init(view: MoviesView,
@@ -60,22 +62,36 @@ class MoviesPresenterImplementation: MoviesPresenter {
     }
     
     func configure(cell: MovieCellView, forRow row: Int) {
-        let movie = movies[row]
+        let movie = searchResultMovies[row]
         let viewModel = MovieCellViewModel(title: movie.title, year: movie.year, rate: movie.rate)
         
         cell.configure(with: viewModel)
     }
     
     func didSelect(row: Int) {
-        let movie = movies[row]
+        let movie = searchResultMovies[row]
         
         router.presentDetailsView(for: movie)
+    }
+    
+    func searchAbout(movieTitle: String) {
+        guard !movieTitle.isEmpty else {
+            self.searchResultMovies = movies
+            view?.refreshMoviesView()
+            return
+        }
+        
+        self.searchResultMovies = movies.filter { movie -> Bool in
+            return movie.title.contains(movieTitle)
+        }
+        view?.refreshMoviesView()
     }
     
     // MARK: - Private Funcitons
     
     fileprivate func handleMoviesReceived(_ movies: [Movie]) {
         self.movies = movies
+        self.searchResultMovies = movies
         view?.refreshMoviesView()
     }
     

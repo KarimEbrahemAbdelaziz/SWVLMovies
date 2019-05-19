@@ -13,6 +13,7 @@ class MoviesViewController: UIViewController {
     // MARK: - IBOutlets
     
     @IBOutlet private weak var moviesTableView: UITableView!
+    @IBOutlet private weak var searchBar: UISearchBar!
     
     // MARK: - Properties
     
@@ -26,6 +27,7 @@ class MoviesViewController: UIViewController {
         
         configurator.configure(moviesViewController: self)
         configureTableView()
+        configureSearchBar()
         
         presenter.viewDidLoad()
     }
@@ -41,6 +43,26 @@ class MoviesViewController: UIViewController {
         moviesTableView.dataSource = self
     }
     
+    private func configureSearchBar() {
+        searchBar.delegate = self
+    }
+    
+}
+
+// MARK: - UISearchBarDelegate
+
+extension MoviesViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        presenter.searchAbout(movieTitle: searchText)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        self.view.endEditing(true)
+    }
 }
 
 // MARK: - UITableViewDataSource
