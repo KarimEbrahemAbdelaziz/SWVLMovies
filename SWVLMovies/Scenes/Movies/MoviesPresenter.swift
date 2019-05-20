@@ -33,7 +33,7 @@ class MoviesPresenterImplementation: MoviesPresenter {
     internal let router: MoviesViewRouter
     
     // Normally this would be file private as well, we keep it internal so we can inject values for testing purposes
-    private var movies = [Movie]()
+    var movies = [Movie]()
     var searchResultMovies = [Movie]()
     
     var numberOfMovies: Int {
