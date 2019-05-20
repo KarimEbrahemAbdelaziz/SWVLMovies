@@ -19,6 +19,9 @@ class LocalMovie: Object, Mappable {
     var cast = List<String>()
     var genres = List<String>()
     
+    private var castArray: [String]?
+    private var genresArray: [String]?
+    
     required convenience init?(map: Map) {
         self.init()
     }
@@ -37,6 +40,8 @@ class LocalMovie: Object, Mappable {
         rate.value <- map["rating"]
         cast <- (map["cast"], arrayToList())
         genres <- (map["genres"], arrayToList())
+        castArray <- map["cast"]
+        genresArray <- map["genres"]
     }
     
 }
