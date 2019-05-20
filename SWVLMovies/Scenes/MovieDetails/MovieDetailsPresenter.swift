@@ -54,9 +54,9 @@ class MovieDetailsPresenterImplementation: MovieDetailsPresenter {
     fileprivate func loadMovieImages() {
         MovieManager.fetchMovieImages(movieTitle: movie.title) { result in
             switch result {
-            case let .success(jsonObject):
+            case let .success(movieImage):
                 self.view?.hideLoadingState()
-                print(jsonObject)
+                
             case let .failure(error):
                 self.view?.hideLoadingState()
                 self.view?.displayMovieRetrievalError(title: "Error!", message: error.localizedDescription)

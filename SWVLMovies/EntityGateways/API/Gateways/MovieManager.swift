@@ -10,16 +10,24 @@ import Alamofire
 import Foundation
 
 class MovieManager {
+    
+    enum MovieManagerError: Error {
+        case parseFailed
+        case networkError
+    }
 
-    static func fetchMovieImages(movieTitle: String, _ completionHandler: @escaping (Result<[String: Any], Error>) -> Void) {
+    static func fetchMovieImages(movieTitle: String, _ completionHandler: @escaping (Result<MovieImages, Error>) -> Void) {
         let request = MovieRouter.fetchMovieImages(movieName: movieTitle)
         AF.request(request).responseJSON { response in
             switch response.result {
             case let .success(value):
-                let jsonObject = value as! [String: Any]
-                completionHandler(.success(jsonObject))
-            case let .failure(error):
-                completionHandler(.failure(error))
+                guard let jsonObject = value as? [String: Any], let movieImages = MovieImages(JSON: jsonObject) else {
+                    completionHandler(.failure(MovieManagerError.parseFailed))
+                    return
+                }
+                completionHandler(.success(movieImages))
+            case .failure:
+                completionHandler(.failure(MovieManagerError.networkError))
             }
         }
     }

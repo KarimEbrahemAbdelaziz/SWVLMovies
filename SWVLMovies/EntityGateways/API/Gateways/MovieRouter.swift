@@ -54,6 +54,8 @@ enum MovieRouter: URLRequestConvertible {
                     url = url.appending("api_key", value: MovieRouter.cocoaPodsKeys.flickrAPIKeyDevelopment)
                     url = url.appending("format", value: "json")
                     url = url.appending("nojsoncallback", value: "1")
+                    url = url.appending("page", value: "1")
+                    url = url.appending("per_page", value: "10")
                 }
             }
             return url
