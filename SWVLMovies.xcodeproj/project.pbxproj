@@ -12,7 +12,6 @@
 		BC6294C12290C505004F0D81 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6294BF2290C505004F0D81 /* Main.storyboard */; };
 		BC6294C32290C505004F0D81 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC6294C22290C505004F0D81 /* Assets.xcassets */; };
 		BC6294C62290C505004F0D81 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BC6294C42290C505004F0D81 /* LaunchScreen.storyboard */; };
-		BC6294D12290C506004F0D81 /* SWVLMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6294D02290C506004F0D81 /* SWVLMoviesTests.swift */; };
 		BC6294DC2290C506004F0D81 /* SWVLMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6294DB2290C506004F0D81 /* SWVLMoviesUITests.swift */; };
 		BC6294EC2290CBC6004F0D81 /* movies.json in Resources */ = {isa = PBXBuildFile; fileRef = BC6294EB2290CBC6004F0D81 /* movies.json */; };
 		BC6294F22290CC8C004F0D81 /* JSONLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC6294F12290CC8C004F0D81 /* JSONLoader.swift */; };
@@ -86,7 +85,6 @@
 		BC6294C52290C505004F0D81 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BC6294C72290C505004F0D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6294CC2290C506004F0D81 /* SWVLMoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWVLMoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		BC6294D02290C506004F0D81 /* SWVLMoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWVLMoviesTests.swift; sourceTree = "<group>"; };
 		BC6294D22290C506004F0D81 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BC6294D72290C506004F0D81 /* SWVLMoviesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SWVLMoviesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC6294DB2290C506004F0D81 /* SWVLMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SWVLMoviesUITests.swift; sourceTree = "<group>"; };
@@ -227,7 +225,6 @@
 				BCB54BE72293666900BFB686 /* Helpers */,
 				BCB54BE42293660F00BFB686 /* UseCases */,
 				BCB54BEB22936D3C00BFB686 /* Presenters */,
-				BC6294D02290C506004F0D81 /* SWVLMoviesTests.swift */,
 				BC6294D22290C506004F0D81 /* Info.plist */,
 			);
 			path = SWVLMoviesTests;
@@ -785,7 +782,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BCB54BF9229370B200BFB686 /* NSError+Extensions.swift in Sources */,
-				BC6294D12290C506004F0D81 /* SWVLMoviesTests.swift in Sources */,
 				BCB54BF422936EC300BFB686 /* MoviesViewRouterSpy.swift in Sources */,
 				BCB54BEA2293669F00BFB686 /* MoviesGatewaySpy.swift in Sources */,
 				BCB54BF222936E1A00BFB686 /* MoviesViewSpy.swift in Sources */,
