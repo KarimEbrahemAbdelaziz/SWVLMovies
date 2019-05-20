@@ -10,7 +10,8 @@ target 'SWVLMovies' do
   pod 'Alamofire', '~> 5.0.0-beta.5'
   pod 'ObjectMapper', '~> 3.4'
   pod 'Kingfisher', '~> 5.0'
-  pod 'SwiftLint' , '~> 0.30.1'
+  pod 'SwiftLint', '~> 0.30.1'
+  pod 'RealmSwift', '~> 3.15.0'
 
   target 'SWVLMoviesTests' do
     inherit! :search_paths

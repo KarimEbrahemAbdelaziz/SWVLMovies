@@ -8,35 +8,45 @@
 
 import Foundation
 import ObjectMapper
+import Realm
+import RealmSwift
 
-class LocalMovie: Mappable {
+class LocalMovie: Object, Mappable {
     
-    var title: String?
-    var year: Int?
-    var rate: Int?
-    var cast: [String]?
-    var genres: [String]?
+    @objc dynamic var title: String = ""
+    dynamic var year: RealmOptional<Int> = RealmOptional<Int>(0)
+    dynamic var rate: RealmOptional<Int> = RealmOptional<Int>(0)
+    var cast = List<String>()
+    var genres = List<String>()
     
-    required init?(map: Map) {
-        
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    override static func primaryKey() -> String? {
+        return "title"
+    }
+    
+    override static func indexedProperties() -> [String] {
+        return ["title", "rate"]
     }
     
     func mapping(map: Map) {
         title <- map["title"]
-        year <- map["year"]
-        rate <- map["rate"]
-        cast <- map["cast"]
-        genres <- map["genres"]
+        year.value <- map["year"]
+        rate.value <- map["rating"]
+        cast <- (map["cast"], arrayToList())
+        genres <- (map["genres"], arrayToList())
     }
     
 }
 
 extension LocalMovie {
     var movie: Movie {
-        return Movie(title: title ?? "",
-                     year: year ?? 0,
-                     rate: rate ?? 0,
-                     cast: cast ?? [],
-                     genres: genres ?? [])
+        return Movie(title: title,
+                     year: year.value ?? 0,
+                     rate: rate.value ?? 0,
+                     cast: castArray ?? [],
+                     genres: genresArray ?? [])
     }
 }

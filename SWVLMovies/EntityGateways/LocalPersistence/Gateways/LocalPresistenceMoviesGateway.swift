@@ -37,6 +37,8 @@ class LocalFileMoviesGateway: LocalPersistenceMoviesGateway {
                 return
             }
             
+            MovieRealmManager.save(objects: localMovies)
+            
             let movies = localMovies.map { $0.movie }
             completionHandler(.success(movies))
         case let .failure(error):

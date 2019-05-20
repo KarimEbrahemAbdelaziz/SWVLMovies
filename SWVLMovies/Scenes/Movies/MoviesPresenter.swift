@@ -81,9 +81,11 @@ class MoviesPresenterImplementation: MoviesPresenter {
             return
         }
         
-        self.searchResultMovies = movies.filter { movie -> Bool in
-            return movie.title.contains(movieTitle)
-        }
+        let realmMovies = MovieRealmManager.filter(by: movieTitle)
+        self.searchResultMovies = realmMovies.map({ realmMovie -> Movie in
+            return realmMovie.movie
+        })
+        
         view?.refreshMoviesView()
     }
     
