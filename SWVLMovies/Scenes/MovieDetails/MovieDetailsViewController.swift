@@ -8,9 +8,9 @@
 
 import Cosmos
 import Foundation
+import Kingfisher
 import SkeletonView
 import UIKit
-import Kingfisher
 
 class MovieDetailsViewController: UIViewController {
     
@@ -19,7 +19,10 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet private weak var movieImage: UIImageView!
     @IBOutlet private weak var movieTitleLabel: UILabel!
     @IBOutlet private weak var movieYearLabel: UILabel!
+    @IBOutlet private weak var movieCastLabel: UILabel!
+    @IBOutlet private weak var movieGenresLabel: UILabel!
     @IBOutlet private weak var movieRateCosmosView: CosmosView!
+    @IBOutlet private weak var imagesCollectionView: UICollectionView!
     
     // MARK: - Properties
     
@@ -56,6 +59,8 @@ class MovieDetailsViewController: UIViewController {
     private func setupLabels() {
         movieTitleLabel.isSkeletonable = true
         movieYearLabel.isSkeletonable = true
+        movieCastLabel.isSkeletonable = true
+        movieGenresLabel.isSkeletonable = true
     }
     
     private func setupRatingCosmosView() {
@@ -84,6 +89,8 @@ class MovieDetailsViewController: UIViewController {
         movieTitleLabel.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
         movieYearLabel.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
         movieRateCosmosView.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
+        movieCastLabel.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
+        movieGenresLabel.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
     }
     
     private func hideLoadingSkeleton() {
@@ -91,22 +98,49 @@ class MovieDetailsViewController: UIViewController {
         movieTitleLabel.hideSkeleton()
         movieYearLabel.hideSkeleton()
         movieRateCosmosView.hideSkeleton()
+        movieCastLabel.hideSkeleton()
+        movieGenresLabel.hideSkeleton()
     }
     
     private func setupMovieDetails() {
         movieTitleLabel.text = presenter.movieTitle
         movieYearLabel.text = presenter.movieYear
         movieRateCosmosView.rating = presenter.movieRate
-        movieImage.kf.setImage(with: presenter.movieImagesUrls.first!)
+        movieImage.image = UIImage(named: "swvl")
+        movieCastLabel.text = presenter.movieCast
+        movieGenresLabel.text = presenter.movieGenres
     }
     
+}
+
+// MARK: - UICollectionViewDataSource
+
+extension MovieDetailsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return presenter.movieImagesUrls.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as! ImageCollectionViewCell
+        cell.configureCell(with: presenter.movieImagesUrls[indexPath.row])
+        return cell
+    }
+}
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension MovieDetailsViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let size: CGFloat = (imagesCollectionView.frame.size.width - 10) / 2.0
+        return CGSize(width: size, height: size)
+    }
 }
 
 // MARK: - MovieDetailsView
 
 extension MovieDetailsViewController: MovieDetailsView {
     func refreshMoviesView() {
-        
+        imagesCollectionView.reloadData()
     }
     
     func showLoadingState() {

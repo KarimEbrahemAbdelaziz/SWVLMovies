@@ -19,6 +19,8 @@ protocol MovieDetailsView: AnyObject {
 protocol MovieDetailsPresenter {
     var movieTitle: String { get }
     var movieYear: String { get }
+    var movieCast: String { get }
+    var movieGenres: String { get }
     var movieRate: Double { get }
     var movieImagesUrls: [URL] { get }
     var router: MovieDetailsViewRouter { get }
@@ -49,21 +51,55 @@ class MovieDetailsPresenterImplementation: MovieDetailsPresenter {
     }
     
     var movieYear: String {
-        return  "Year: \(movie.year)"
+        return "Year: \(movie.year)"
     }
     
     var movieRate: Double {
         return Double(movie.rate)
     }
     
+    var movieCast: String {
+        guard !movie.cast.isEmpty else {
+            return ""
+        }
+        
+        var castString = "Cast: "
+        movie.cast.forEach { cast in
+            castString.append("\(cast)")
+            if cast != movie.cast.last! {
+                castString.append(", ")
+            }
+        }
+        return castString
+    }
+    
+    var movieGenres: String {
+        guard !movie.genres.isEmpty else {
+            return ""
+        }
+        
+        var genresString = "Genres: "
+        movie.genres.forEach { genre in
+            genresString.append("\(genre)")
+            if genre != movie.genres.last! {
+                genresString.append(", ")
+            }
+        }
+        return genresString
+    }
+    
     var movieImagesUrls: [URL] {
         //swiftlint:disable all
+        guard movieImages != nil else {
+            return []
+        }
+        
         let urls = movieImages.images!.compactMap { photo -> URL? in
-            guard let farm = movieImages.images?.last?.farm,
-                let server = movieImages.images?.last?.server,
-                let id = movieImages.images?.last?.id,
-                let secret = movieImages.images?.last?.secret,
-                let isPublic = movieImages.images?.last?.ispublic, isPublic == 1 else {
+            guard let farm = photo.farm,
+                let server = photo.server,
+                let id = photo.id,
+                let secret = photo.secret,
+                let isPublic = photo.ispublic, isPublic == 1 else {
                     return nil
             }
             return URL(string: "https://farm\(farm).staticflickr.com/\(server)/\(id)_\(secret).jpg")
@@ -80,6 +116,7 @@ class MovieDetailsPresenterImplementation: MovieDetailsPresenter {
     }
     
     func dismissButtonPressed() {
+        
         router.dismissView()
     }
     
@@ -102,9 +139,13 @@ class MovieDetailsPresenterImplementation: MovieDetailsPresenter {
         view?.refreshMoviesView()
     }
     
-    fileprivate func handleMovieImageRetrivalError(_ error: Error) {
-        self.view?.hideLoadingState()
-        self.view?.displayMovieRetrievalError(title: "Error!", message: error.localizedDescription)
+    fileprivate func handleMovieImageRetrivalError(_ error: MovieManager.MovieManagerError) {
+        switch error {
+        case .networkError:
+            self.view?.displayMovieRetrievalError(title: "Error!", message: "Please check your internet connection and try again later.")
+        case .parseFailed:
+            self.view?.displayMovieRetrievalError(title: "Error!", message: "Failed to load data, please try again.")
+        }
     }
     
 }

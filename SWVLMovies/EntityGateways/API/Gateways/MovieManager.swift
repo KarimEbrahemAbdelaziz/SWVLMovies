@@ -16,7 +16,7 @@ class MovieManager {
         case networkError
     }
 
-    static func fetchMovieImages(movieTitle: String, _ completionHandler: @escaping (Result<MovieImages, Error>) -> Void) {
+    static func fetchMovieImages(movieTitle: String, _ completionHandler: @escaping (Result<MovieImages, MovieManagerError>) -> Void) {
         let request = MovieRouter.fetchMovieImages(movieName: movieTitle)
         AF.request(request).responseJSON { response in
             switch response.result {
@@ -31,5 +31,7 @@ class MovieManager {
             }
         }
     }
+    
+    
     
 }
