@@ -6,6 +6,7 @@
 //  Copyright © 2019 Karim Ebrahem. All rights reserved.
 //
 
+import Cosmos
 import Foundation
 import SkeletonView
 import UIKit
@@ -16,7 +17,8 @@ class MovieDetailsViewController: UIViewController {
     
     @IBOutlet private weak var movieImage: UIImageView!
     @IBOutlet private weak var movieTitleLabel: UILabel!
-    @IBOutlet private weak var movieRateLabel: UILabel!
+    @IBOutlet private weak var movieYearLabel: UILabel!
+    @IBOutlet private weak var movieRateCosmosView: CosmosView!
     
     // MARK: - Properties
     
@@ -52,7 +54,11 @@ class MovieDetailsViewController: UIViewController {
     
     private func setupLabels() {
         movieTitleLabel.isSkeletonable = true
-        movieRateLabel.isSkeletonable = true
+        movieYearLabel.isSkeletonable = true
+    }
+    
+    private func setupRatingCosmosView() {
+        movieRateCosmosView.isSkeletonable = true
     }
     
     private func setGradientBackground() {
@@ -74,11 +80,15 @@ class MovieDetailsViewController: UIViewController {
         
         movieImage.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
         movieTitleLabel.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
-        movieRateLabel.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
+        movieYearLabel.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
+        movieRateCosmosView.showAnimatedGradientSkeleton(usingGradient: gradiant, animation: nil)
     }
     
     private func hideLoadingSkeleton() {
         movieImage.hideSkeleton()
+        movieTitleLabel.hideSkeleton()
+        movieYearLabel.hideSkeleton()
+        movieRateCosmosView.hideSkeleton()
     }
     
 }
@@ -97,5 +107,7 @@ extension MovieDetailsViewController: MovieDetailsView {
     func setupUI() {
         setGradientBackground()
         setupMovieImageView()
+        setupRatingCosmosView()
+        setupLabels()
     }
 }

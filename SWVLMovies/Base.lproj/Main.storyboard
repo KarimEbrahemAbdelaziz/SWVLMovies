@@ -156,24 +156,56 @@
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Gd-eD-0Am">
                                                 <rect key="frame" x="16" y="348" width="382" height="21.5"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                <color key="textColor" red="0.08235294118" green="0.070588235289999995" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MpI-1m-diS">
-                                                <rect key="frame" x="16" y="385.5" width="382" height="21"/>
+                                                <rect key="frame" x="16" y="377.5" width="382" height="21"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.08235294118" green="0.070588235289999995" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2VB-ho-l2f" customClass="CosmosView" customModule="Cosmos">
+                                                <rect key="frame" x="122" y="406.5" width="170" height="30"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="30" id="kiK-DA-32d"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="rating">
+                                                        <real key="value" value="0.0"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="totalStars">
+                                                        <integer key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="starSize">
+                                                        <real key="value" value="30"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="filledColor">
+                                                        <color key="value" red="1" green="0.67843137249999996" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyColor">
+                                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="emptyBorderColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="filledBorderColor">
+                                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="MpI-1m-diS" firstAttribute="top" secondItem="4Gd-eD-0Am" secondAttribute="bottom" constant="16" id="2ru-2u-dDv"/>
+                                            <constraint firstItem="MpI-1m-diS" firstAttribute="top" secondItem="4Gd-eD-0Am" secondAttribute="bottom" constant="8" id="2ru-2u-dDv"/>
                                             <constraint firstItem="4Gd-eD-0Am" firstAttribute="top" secondItem="NrI-wZ-NMh" secondAttribute="bottom" constant="32" id="94U-X7-eLQ"/>
+                                            <constraint firstItem="2VB-ho-l2f" firstAttribute="top" secondItem="MpI-1m-diS" secondAttribute="bottom" constant="8" id="ARr-Z8-FQK"/>
                                             <constraint firstItem="MpI-1m-diS" firstAttribute="centerX" secondItem="Afg-vY-pSf" secondAttribute="centerX" id="DZK-Ao-MxE"/>
                                             <constraint firstAttribute="height" constant="600" id="KQQ-iC-jTG"/>
                                             <constraint firstItem="NrI-wZ-NMh" firstAttribute="top" secondItem="Afg-vY-pSf" secondAttribute="top" constant="16" id="NOM-LS-mGY"/>
                                             <constraint firstAttribute="trailing" secondItem="NrI-wZ-NMh" secondAttribute="trailing" constant="16" id="Ncy-87-K0W"/>
+                                            <constraint firstItem="2VB-ho-l2f" firstAttribute="centerX" secondItem="Afg-vY-pSf" secondAttribute="centerX" id="RFf-WE-FRi"/>
                                             <constraint firstItem="NrI-wZ-NMh" firstAttribute="leading" secondItem="Afg-vY-pSf" secondAttribute="leading" constant="16" id="VRu-5Z-AZ3"/>
                                             <constraint firstItem="4Gd-eD-0Am" firstAttribute="centerX" secondItem="Afg-vY-pSf" secondAttribute="centerX" id="Wky-4F-fII"/>
                                             <constraint firstItem="MpI-1m-diS" firstAttribute="trailing" secondItem="4Gd-eD-0Am" secondAttribute="trailing" id="aZM-ED-Wzr"/>
@@ -205,8 +237,9 @@
                     </view>
                     <connections>
                         <outlet property="movieImage" destination="NrI-wZ-NMh" id="OkI-U4-6OJ"/>
-                        <outlet property="movieRateLabel" destination="MpI-1m-diS" id="rHb-CJ-U0N"/>
+                        <outlet property="movieRateCosmosView" destination="2VB-ho-l2f" id="2Fi-VB-Gtc"/>
                         <outlet property="movieTitleLabel" destination="4Gd-eD-0Am" id="JbT-8i-aL5"/>
+                        <outlet property="movieYearLabel" destination="MpI-1m-diS" id="KeF-CB-1Mv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcX-Dy-2ml" userLabel="First Responder" sceneMemberID="firstResponder"/>
