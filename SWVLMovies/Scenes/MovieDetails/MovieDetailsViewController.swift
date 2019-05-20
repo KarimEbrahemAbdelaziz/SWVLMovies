@@ -110,4 +110,8 @@ extension MovieDetailsViewController: MovieDetailsView {
         setupRatingCosmosView()
         setupLabels()
     }
+    
+    func displayMovieRetrievalError(title: String, message: String) {
+        presentAlert(withTitle: title, message: message)
+    }
 }

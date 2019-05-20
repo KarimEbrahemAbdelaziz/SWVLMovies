@@ -12,6 +12,7 @@ protocol MovieDetailsView: AnyObject {
     func setupUI()
     func showLoadingState()
     func hideLoadingState()
+    func displayMovieRetrievalError(title: String, message: String)
 }
 
 protocol MovieDetailsPresenter {
@@ -35,13 +36,32 @@ class MovieDetailsPresenterImplementation: MovieDetailsPresenter {
         self.router = router
     }
     
+    // MARK: - MovieDetailsPresenter
+    
     func viewDidLoad() {
         view?.setupUI()
         view?.showLoadingState()
+        
+        loadMovieImages()
     }
     
     func dismissButtonPressed() {
         router.dismissView()
+    }
+    
+    // MARK: - Private Funcitons
+    
+    fileprivate func loadMovieImages() {
+        MovieManager.fetchMovieImages(movieTitle: movie.title) { result in
+            switch result {
+            case let .success(jsonObject):
+                self.view?.hideLoadingState()
+                print(jsonObject)
+            case let .failure(error):
+                self.view?.hideLoadingState()
+                self.view?.displayMovieRetrievalError(title: "Error!", message: error.localizedDescription)
+            }
+        }
     }
     
 }
