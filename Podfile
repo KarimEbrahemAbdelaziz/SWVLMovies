@@ -12,6 +12,8 @@ target 'SWVLMovies' do
   pod 'Kingfisher', '~> 5.0'
   pod 'SwiftLint', '~> 0.30.1'
   pod 'RealmSwift', '~> 3.15.0'
+  pod 'SkeletonView', '~> 1.5'
+  pod 'Cosmos', '~> 19.0'
 
   target 'SWVLMoviesTests' do
     inherit! :search_paths

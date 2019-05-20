@@ -50,8 +50,8 @@ class MoviesViewController: UIViewController {
     }
     
     private func setGradientBackground() {
-        let colorBottom =  UIColor(red: 0.529, green: 0.737, blue: 0.914, alpha: 1.0).cgColor
-        let colorTop = UIColor(red: 0.278, green: 0.341, blue: 0.624, alpha: 1.0).cgColor
+        let colorBottom =  UIColor.skyBlue.cgColor
+        let colorTop = UIColor.semiBlue.cgColor
         
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorTop, colorBottom]

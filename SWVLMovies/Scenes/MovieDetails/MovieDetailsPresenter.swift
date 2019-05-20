@@ -9,7 +9,9 @@
 import Foundation
 
 protocol MovieDetailsView: AnyObject {
-    
+    func setupUI()
+    func showLoadingState()
+    func hideLoadingState()
 }
 
 protocol MovieDetailsPresenter {
@@ -34,7 +36,8 @@ class MovieDetailsPresenterImplementation: MovieDetailsPresenter {
     }
     
     func viewDidLoad() {
-        
+        view?.setupUI()
+        view?.showLoadingState()
     }
     
     func dismissButtonPressed() {
