@@ -28,6 +28,7 @@ class MoviesViewController: UIViewController {
         configurator.configure(moviesViewController: self)
         configureTableView()
         configureSearchBar()
+        setGradientBackground()
         
         presenter.viewDidLoad()
     }
@@ -45,6 +46,19 @@ class MoviesViewController: UIViewController {
     
     private func configureSearchBar() {
         searchBar.delegate = self
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).textColor = UIColor.white
+    }
+    
+    private func setGradientBackground() {
+        let colorBottom =  UIColor(red: 0.529, green: 0.737, blue: 0.914, alpha: 1.0).cgColor
+        let colorTop = UIColor(red: 0.278, green: 0.341, blue: 0.624, alpha: 1.0).cgColor
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [colorTop, colorBottom]
+        gradientLayer.locations = [0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+        
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
 }

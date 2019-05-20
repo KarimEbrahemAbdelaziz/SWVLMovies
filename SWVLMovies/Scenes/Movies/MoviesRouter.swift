@@ -28,7 +28,9 @@ class MoviesViewRouterImplementation: MoviesViewRouter {
     }
     
     func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if let movieDetailsTableViewController = segue.destination as? MovieDetailsViewController {
+            movieDetailsTableViewController.configurator = MovieDetailsConfiguratorImplementation(movie: movie)
+        }
     }
     
 }
