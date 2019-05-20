@@ -10,6 +10,7 @@ import Cosmos
 import Foundation
 import SkeletonView
 import UIKit
+import Kingfisher
 
 class MovieDetailsViewController: UIViewController {
     
@@ -59,6 +60,7 @@ class MovieDetailsViewController: UIViewController {
     
     private func setupRatingCosmosView() {
         movieRateCosmosView.isSkeletonable = true
+        movieRateCosmosView.isUserInteractionEnabled = false
     }
     
     private func setGradientBackground() {
@@ -91,17 +93,29 @@ class MovieDetailsViewController: UIViewController {
         movieRateCosmosView.hideSkeleton()
     }
     
+    private func setupMovieDetails() {
+        movieTitleLabel.text = presenter.movieTitle
+        movieYearLabel.text = presenter.movieYear
+        movieRateCosmosView.rating = presenter.movieRate
+        movieImage.kf.setImage(with: presenter.movieImagesUrls.first!)
+    }
+    
 }
 
 // MARK: - MovieDetailsView
 
 extension MovieDetailsViewController: MovieDetailsView {
+    func refreshMoviesView() {
+        
+    }
+    
     func showLoadingState() {
         showLoadingSkeleton()
     }
     
     func hideLoadingState() {
         hideLoadingSkeleton()
+        setupMovieDetails()
     }
     
     func setupUI() {
