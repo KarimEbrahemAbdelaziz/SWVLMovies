@@ -11,6 +11,7 @@ SWVLMovies is an iOS application built as interview task at Swvl. Built Using MV
 1. Clone the porject.
 2. Navigate to project folder in terminal.
 3. Run `make bootstrap`
+4. Provide your flicker API key when asked (while install cocoapods)
 
 ### High Level Layers
 
